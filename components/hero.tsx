@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, easeOut } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Linkedin, MessageCircle, Download } from "lucide-react"
 import jsPDF from "jspdf"
@@ -24,7 +24,7 @@ export function Hero() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
+  ease: easeOut,
       },
     },
   }
@@ -36,79 +36,12 @@ export function Hero() {
       scale: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut",
+  ease: easeOut,
       },
     },
   }
 
-  const downloadCV = () => {
-    const doc = new jsPDF()
-
-    // Header
-    doc.setFontSize(20)
-    doc.text("Marcello Alvinskie  Computer Science Undergraduate", 20, 30)
-
-    doc.setFontSize(12)
-    doc.text("alvinskiemarcello@gmail.com", 20, 45)
-    doc.text("0852 1176 6633", 20, 55)
-    doc.text("Jakarta, Indonesia", 20, 65)
-    doc.text("linkedin.com/in/marcello-alvinskie-a76b86373", 20, 75)
-
-    // Education section
-    doc.setFontSize(16)
-    doc.text("Education", 20, 95)
-    doc.setFontSize(12)
-    doc.text("Computer Science, Bina Nusantara University", 20, 110)
-    doc.text("GPA: 3.55 / 4.00", 20, 120)
-    doc.text("Tangerang, Indonesia", 20, 130)
-
-    // Projects
-    doc.text("•Smart Ways to Live", 20, 145)
-    doc.text("Created a 2D platformer game regarding natural disasters to assist children in their", 25, 155)
-    doc.text("ability to make optimal decisions", 25, 165)
-
-    doc.text("•Cateringz Design Concept", 20, 180)
-    doc.text("Created the design concept of a simulation company operating in the F&B industry as a", 25, 190)
-    doc.text("university project using Figma.", 25, 200)
-
-    doc.text("Elementary / Middle School / High School, Kairos Gracia Christian School", 20, 215)
-    doc.text("Achieved A and A+ grades on all 5/5 IGCSE tests", 20, 225)
-    doc.text("Jakarta, Indonesia", 20, 235)
-
-    // Hard Skills
-    doc.setFontSize(16)
-    doc.text("Hard Skills", 20, 255)
-    doc.setFontSize(12)
-    doc.text("Programming Languages", 20, 270)
-    doc.text("C (Competent) | Java (Amateur) | Python (Amateur)", 20, 280)
-
-    doc.text("Operating Systems", 20, 295)
-    doc.text("Windows (Competent) | Kali Linux (Amateur) | Rocky Linux (Amateur) | Ubuntu (Basic)", 20, 305)
-
-    doc.text("Designing Tools", 20, 320)
-    doc.text("Figma (Amateur) | Canva (Competent)", 20, 330)
-
-    doc.text("Languages", 20, 345)
-    doc.text("Bahasa Indonesia — Native/Bilingual", 20, 360)
-    doc.text("English — Native/Bilingual", 20, 370)
-    doc.text("Mandarin — Basic", 20, 380)
-
-    // Add new page for Soft Skills
-    doc.addPage()
-    doc.setFontSize(16)
-    doc.text("Soft Skills", 20, 30)
-    doc.setFontSize(12)
-    doc.text("•Eager to Learn - Every experience is reflected on for the sake of improving", 20, 45)
-    doc.text("•Adaptability - Adapts fast to the standards and expectations of the workforce", 20, 60)
-    doc.text("•Time Management - Ensures every task given will be finished on time", 20, 75)
-    doc.text("•Problem Solver - Every problem will be thoroughly analyzed and solved", 20, 90)
-    doc.text("•Team Collaboration - Keeping work-related relationships with colleagues at a", 20, 105)
-    doc.text("satisfactory state to ensure the ability of delivering satisfactory results", 25, 115)
-
-    // Save the PDF
-    doc.save("Marcello_Alvinskie_CV.pdf")
-  }
-
+  
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Animated background gradient */}
@@ -154,9 +87,11 @@ export function Hero() {
               </Button>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button variant="outline" size="lg" className="text-lg px-8 py-3 bg-transparent" onClick={downloadCV}>
-                <Download className="mr-2 h-5 w-5" />
-                Download CV
+              <Button variant="outline" size="lg" className="text-lg px-8 py-3 bg-transparent" asChild>
+                <a href="/MarcelloAlvinskie-CV.pdf" download>
+                  <Download className="mr-2 h-5 w-5" />
+                  Download CV
+                </a>
               </Button>
             </motion.div>
           </motion.div>
